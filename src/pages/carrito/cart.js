@@ -4,35 +4,53 @@ import Footer from "@/components/Footer.jsx";
 import Metatags from "@/components/Metatags.jsx";
 import ShoppingCart from "@/components/ShoppingCart_page/ShoppingCart.jsx";
 import SimulacionCompra from "@/components/ShoppingCart_page/SimulacionCompra.jsx";
-import productStyles from '@/styles/style_productos/Main_Productos.module.css';
-import cartStyles from '@/styles/style_productos/ShoppingCart_productos.module.css';
+import styles from '@/styles/style_productos/ShoppingCart_productos.module.css';
+import { useContext } from "react";
+import { ShoppingCartContext } from "@/pages/carrito/ShoppingCartContextProvider";
 
 export default function Cart() {
+  const { state } = useContext(ShoppingCartContext);
+  const { cart } = state;
+  const isEmpty = cart.length === 0;
+
   return (
     <>
       <Head>
-        <title>Carrito de Compras</title>
+        <title>Mi Carrito | Panozzo</title>
         <Metatags />
       </Head>
-      <div>
+      
+      <div style={{ backgroundColor: "#f8fafc", minHeight: "100vh" }}>
         <header>
-          <Navbar />
+          {/* Forzamos el Navbar sólido para que se vea sobre el fondo blanco */}
+          <Navbar alwaysSolid={true} />
         </header>
 
-        <section className={cartStyles.hero}>
-          <div className={productStyles.heroOverlay}></div>
-          <h1 className={productStyles.heroTitle}>Mi Carrito</h1>
-          <p className={productStyles.heroSubtitle}>Revisa tus productos y finaliza tu compra</p>
-        </section>
-        <main className={productStyles.main}>
-          <h2 className={productStyles.pageTitle}>Resumen de tu pedido</h2>
-          <ShoppingCart />
-          <SimulacionCompra />
+        <div style={{ height: "80px" }}></div>
+
+        <main className={styles.main}>
+          <div className={styles.headerCart}>
+            <h1 className={styles.pageTitle}>Tu Carrito</h1>
+          </div>
+
+          {/* Cambiamos la clase según si está vacío o no */}
+          <div className={isEmpty ? styles.cartLayoutEmpty : styles.cartLayout}>
+            
+            <section className={styles.itemsColumn}>
+               <ShoppingCart />
+            </section>
+
+            {/* Solo mostramos la columna lateral si hay productos */}
+            {!isEmpty && (
+              <aside className={styles.summaryColumn}>
+                 <SimulacionCompra />
+              </aside>
+            )}
+          </div>
         </main>
 
         <Footer />
       </div>
     </>
-
   );
 }

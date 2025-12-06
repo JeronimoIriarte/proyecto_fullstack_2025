@@ -1,82 +1,127 @@
-/* Estilo para el Hero específico del carrito */
-.hero {
-  position: relative;
-  height: 40vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
-  background-image: url('/images/estadio.webp'); 
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+/* --- Estructura Principal --- */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 80vh; /* Para que no quede vacío si hay pocos items */
 }
 
-/* Estilos para el componente ShoppingCart */
-.cartContainer {
+/* Header Simple (Ya no usamos el Hero gigante aquí para ir al grano) */
+.headerCart {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1rem;
+}
+
+.pageTitle {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+/* --- Layout de 2 Columnas --- */
+.cartLayout {
+  display: grid;
+  grid-template-columns: 1fr 380px; /* Productos a la izq, Resumen fijo de 380px a la der */
+  gap: 3rem;
+  align-items: start;
+}
+
+.cartLayoutEmpty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
   width: 100%;
-  padding: 1rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
+}
+
+/* Columna Izquierda: Lista de Productos */
+.itemsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Botón de seguir comprando */
+.continueLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-light);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s;
+}
+
+.continueLink:hover {
+  color: var(--color-secondary);
+}
+
+/* Columna Derecha: Resumen */
+.summaryColumn {
+  position: sticky;
+  top: 100px; /* Se queda fijo al bajar, respetando el navbar */
+  z-index: 100;
+}
+
+/* Mensaje Vacío */
+.emptyCart {
+  text-align: center;
+  padding: 4rem;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.emptyTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
   margin-bottom: 1rem;
 }
 
-.cartHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.continueShoppingLink {
-  font-size: 1rem;
-  color: #007bff;
-  text-decoration: none;
+.emptyLink {
+  color: white;
+  background-color: var(--color-secondary);
+  padding: 10px 20px;
+  border-radius: 30px;
   font-weight: 600;
 }
 
-.continueShoppingLink:hover {
-  text-decoration: underline;
+/* Botón Limpiar Carrito */
+.clearButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
 }
 
 .clearButton {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+    background: transparent;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .clearButton:hover {
-  background-color: #c82333;
-  transform: scale(1.03);
-  transition: 0.3s;
+    background: #fef2f2;
 }
 
-.clearButton:disabled {
-  background-color: #e0aeb1;
-  cursor: not-allowed;
-}
-
-.emptyCartMessage {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #6c757d;
-  padding: 3rem 0;
-}
-
-.cartTotal {
-    text-align: right;
+/* Responsive */
+@media (max-width: 1024px) {
+  .cartLayout {
+    grid-template-columns: 1fr; /* Una columna en tablets/móvil */
+  }
+  
+  .summaryColumn {
+    position: static; /* Ya no es sticky */
     margin-top: 2rem;
-    font-size: 1.8rem;
-    font-weight: bold;
+  }
 }
