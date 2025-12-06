@@ -3,7 +3,7 @@ import { useContext } from "react";
 import ProductCard from "@/components/Productos_page/Card_productos";
 import Link from "next/link";
 import styles from '@/styles/style_productos/ShoppingCart_productos.module.css';
-import productStyles from '@/styles/style_productos/GrillaDeProductos_productos.module.css';
+import productStyles from '@/styles/style_productos/Main_Productos.module.css';
 
 const ShoppingCart = () => {
 

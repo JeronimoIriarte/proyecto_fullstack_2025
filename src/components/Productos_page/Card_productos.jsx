@@ -16,19 +16,16 @@ export default function Card_productos({ product, context = 'products', deleteFr
   const { addToCart } = useContext(ShoppingCartContext);
   const sizeSelectRef = useRef(null);
 
-  // Protección contra datos vacíos
   if (!product) return null;
 
   const { id, title, price, imageUrl, imageAltUrl, description, quantity } = product;
 
-  // Lógica del Modal
   const openModal = () => {
     setMessage({ visible: false, text: '', type: '' });
     setIsModalOpen(true);
   };
   const closeModal = () => setIsModalOpen(false);
 
-  // Limpieza de precio
   const getNumericPrice = (value) => {
       if (!value) return 0;
       if (typeof value === 'number') return value;
@@ -62,17 +59,23 @@ export default function Card_productos({ product, context = 'products', deleteFr
       {/* --- TARJETA DEL CATÁLOGO --- */}
       <div className={styles.card}>
         <div className={styles.imageWrapper}>
-            {product.onSale && <span className={styles.badge}>OFERTA</span>}
+            {/* NUEVO: Badge Diagonal (Estructura Wrapper) */}
+            {product.onSale && (
+                <div className={styles.badgeWrapper}>
+                    <span className={styles.badge}>OFERTA</span>
+                </div>
+            )}
+            
             <img 
                 src={imageUrl || "/images/placeholder.png"} 
                 alt={title} 
                 className={styles.cardImage}
             />
-            {/* Overlay con botón al pasar el mouse (solo en catálogo) */}
+            
             {context === 'products' && (
                 <div className={styles.cardOverlay}>
                     <button onClick={openModal} className={styles.quickViewBtn}>
-                        Vista Rápida
+                        Ver Más
                     </button>
                 </div>
             )}
@@ -82,7 +85,6 @@ export default function Card_productos({ product, context = 'products', deleteFr
           <h3 className={styles.cardTitle}>{title}</h3>
           <p className={styles.cardPrice}>${numericPrice.toLocaleString("es-ES")}</p>
           
-          {/* Controles para el Carrito (Eliminar, Cantidad) */}
           {context === 'cart' && (
             <div className={styles.cartControls}>
                 <div className={styles.cartInfo}>
@@ -102,14 +104,13 @@ export default function Card_productos({ product, context = 'products', deleteFr
         </div>
       </div>
 
-      {/* --- MODAL CON SLIDER (Solo en catálogo) --- */}
+      {/* --- MODAL CON SLIDER --- */}
       {context === 'products' && isModalOpen && (
         <div className={styles.modalBackdrop} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeButton} onClick={closeModal}>&times;</button>
             
             <div className={styles.modalGrid}>
-                {/* COLUMNA IZQUIERDA: SLIDER DE IMÁGENES */}
                 <div className={styles.sliderContainer}>
                     <Swiper
                         modules={[Pagination, Navigation]}
@@ -117,16 +118,14 @@ export default function Card_productos({ product, context = 'products', deleteFr
                         navigation={true}
                         spaceBetween={0}
                         slidesPerView={1}
-                        className="product-modal-slider" // Clase para estilos globales si hace falta
+                        className={styles.swiperCustom} // Clase para estilos globales del slider
                     >
-                        {/* Slide 1: Imagen Principal */}
                         <SwiperSlide>
                             <div className={styles.slideImageWrapper}>
                                 <img src={imageUrl} alt={title} />
                             </div>
                         </SwiperSlide>
 
-                        {/* Slide 2: Imagen Secundaria (Si existe) */}
                         {imageAltUrl && (
                             <SwiperSlide>
                                 <div className={styles.slideImageWrapper}>
@@ -137,7 +136,6 @@ export default function Card_productos({ product, context = 'products', deleteFr
                     </Swiper>
                 </div>
 
-                {/* COLUMNA DERECHA: INFORMACIÓN */}
                 <div className={styles.modalDetails}>
                     <h2 className={styles.modalTitle}>{title}</h2>
                     <p className={styles.modalPrice}>${numericPrice.toLocaleString("es-ES")}</p>
@@ -146,7 +144,6 @@ export default function Card_productos({ product, context = 'products', deleteFr
                     
                     <p className={styles.modalDescription}>{description}</p>
                     
-                    {/* Mensajes de feedback */}
                     {message.visible && (
                         <div className={`${styles.messageBox} ${styles[message.type]} ${message.visible ? styles.show : ''}`}>
                             {message.text}

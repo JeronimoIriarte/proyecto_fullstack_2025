@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  /* Sin borde, usamos el fondo limpio */
 }
 
 .card:hover {
@@ -18,9 +17,9 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  padding-top: 100%; /* Cuadrado 1:1 */
-  background-color: #f8fafc; /* Gris muy suave */
-  overflow: hidden;
+  padding-top: 100%;
+  background-color: #f8fafc;
+  overflow: hidden; /* Vital para recortar la cinta */
 }
 
 .cardImage {
@@ -30,6 +29,7 @@
   width: 100%;
   height: 100%;
   object-fit: fill;
+  padding: 10px;
   transition: transform 0.5s ease;
 }
 
@@ -37,33 +37,50 @@
   transform: scale(1.08);
 }
 
+/* --- NUEVO BADGE DIAGONAL --- */
+.badgeWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
 .badge {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 15px;
+  left: -30px;
+  transform: rotate(-45deg);
   background-color: var(--color-secondary);
   color: white;
   font-size: 0.7rem;
-  font-weight: 700;
-  padding: 4px 8px;
-  border-radius: 4px;
-  z-index: 2;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 5px 0;
+  width: 100px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  letter-spacing: 1px;
 }
 
-/* Overlay del botón (Solo aparece en hover) */
+/* Overlay del botón */
 .cardOverlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.02); /* Muy sutil */
+  background: rgba(0,0,0,0.02);
   display: flex;
-  align-items: flex-end; /* Botón abajo */
+  align-items: flex-end;
   justify-content: center;
   padding-bottom: 20px;
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 6; /* Por encima del badge wrapper si fuera necesario interactuar */
 }
 
 .card:hover .cardOverlay {
@@ -88,7 +105,7 @@
 }
 
 .quickViewBtn:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
   color: white;
 }
 
@@ -122,7 +139,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(15, 23, 42, 0.6); /* Backdrop oscuro y azulado */
+  background-color: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
@@ -135,7 +152,7 @@
   background-color: white;
   border-radius: var(--radius-lg);
   width: 100%;
-  max-width: 900px; /* Modal ancho */
+  max-width: 900px;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
@@ -161,7 +178,7 @@
   line-height: 1;
   cursor: pointer;
   color: #64748b;
-  z-index: 10;
+  z-index: 20; /* Encima del slider */
   transition: all 0.2s;
 }
 
@@ -172,7 +189,7 @@
 
 .modalGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 50% Imagen - 50% Info */
+  grid-template-columns: 1fr 1fr;
 }
 
 /* Slider en el Modal */
@@ -181,8 +198,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 500px; /* Altura fija para el área de imagen */
+  height: 500px;
   overflow: hidden;
+  position: relative;
+}
+
+/* --- PERSONALIZACIÓN DE COLORES SWIPER (MODAL) --- */
+.swiperCustom {
+  width: 100%;
+  height: 100%;
+  --swiper-theme-color: var(--color-secondary); /* Color principal de Swiper (naranja) */
+  --swiper-navigation-size: 20px; /* Flechas más delicadas */
+}
+
+/* Forzamos estilos con :global para las partes internas de Swiper */
+.swiperCustom :global(.swiper-button-next),
+.swiperCustom :global(.swiper-button-prev) {
+  color: var(--color-primary); /* Flechas azul oscuro */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.swiperCustom :global(.swiper-button-next):hover,
+.swiperCustom :global(.swiper-button-prev):hover {
+  color: white;
+}
+
+/* Puntos de paginación */
+.swiperCustom :global(.swiper-pagination-bullet-active) {
+  background: var(--color-secondary); /* Punto activo naranja */
 }
 
 .slideImageWrapper {
@@ -191,12 +237,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 40px;
 }
 
 .slideImageWrapper img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  object-fit: fill;
   filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
 }
 
@@ -236,7 +283,7 @@
 
 /* Controles de Acción */
 .actionArea {
-  margin-top: auto; /* Empuja esto al fondo si hay espacio */
+  margin-top: auto;
 }
 
 .selectorContainer {
@@ -294,7 +341,6 @@
   cursor: default;
 }
 
-/* Mensaje de Error/Éxito */
 .messageBox {
   margin-bottom: 1rem;
   padding: 10px;
@@ -315,7 +361,7 @@
   75% { transform: translateX(5px); }
 }
 
-/* --- CONTROLES CARRITO (Mini versión para la página /cart) --- */
+/* --- CONTROLES CARRITO --- */
 .cartControls {
     margin-top: 10px;
 }
@@ -346,7 +392,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .modalGrid {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
   }
   .sliderContainer {
     height: 300px;
