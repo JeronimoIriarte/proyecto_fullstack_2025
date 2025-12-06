@@ -9,7 +9,7 @@
 <br>
 
 <p align="center">
-  <img src="/public/images/EXAMPLE.png" alt="Panozzo Indumentaria Logo" width="300"/>
+  <img src="/public/images/EXAMPLE.png" alt="Panozzo Indumentaria Logo" width="500"/>
 </p>
 
 <p align="center">
