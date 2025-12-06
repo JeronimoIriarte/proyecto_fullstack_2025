@@ -1,99 +1,70 @@
 import React from "react";
-import styles from "@/styles/footer.module.css"; // Asegúrate de que la ruta sea correcta
+import styles from "@/styles/footer.module.css";
+import Link from "next/link";
 
 const Footer = () => {
   return (
     <footer id="footer" className={styles.footer}>
       <div className={styles.container}>
-        {/* Sección de Logo, Descripción y Redes Sociales */}
-        <div className={styles.logoSection}>
+        
+        {/* Columna 1: Marca */}
+        <div className={styles.brandColumn}>
           <div className={styles.logoWrapper}>
             <img
               src="/images/logo_horizontal.png"
               alt="Panozzo Logo"
-              width={250}
-              height={120}
               className={styles.logoImage}
             />
           </div>
-          {/* Espacio para los iconos de redes sociales */}
+          <p className={styles.brandDescription}>
+            Vistiendo la pasión del fútbol con la mejor calidad y estilo. 
+            Camisetas exclusivas para hinchas exigentes.
+          </p>
+          
           <div className={styles.socialIcons}>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-            >
-              <img
-                src="/images/icons/logo_facebook.png"
-                alt="logo Facebook"
-                className={styles.socialIcon}
-              />
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" className={styles.socialLink}>
+               <img src="/images/icons/logo_facebook.png" alt="Facebook" />
             </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-            >
-              <img
-                src="/images/icons/logo_instagram.png"
-                alt="logo Instagram"
-                className={styles.socialIcon}
-              />
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className={styles.socialLink}>
+               <img src="/images/icons/logo_instagram.png" alt="Instagram" />
             </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-            >
-              <img
-                src="/images/icons/logo_twitter.png"
-                alt="logo Twitter"
-                className={styles.socialIcon}
-              />
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className={styles.socialLink}>
+               <img src="/images/icons/logo_twitter.png" alt="Twitter" />
             </a>
           </div>
         </div>
 
-        {/* Sección de Enlaces Rápidos */}
-        <div className={styles.linksSection}>
-          <h2 className={styles.sectionTitle}>Enlaces Rápidos</h2>
+        {/* Columna 2: Enlaces */}
+        <div className={styles.linksColumn}>
+          <h3 className={styles.columnTitle}>Explorar</h3>
           <ul className={styles.linkList}>
-            <li>
-              <a href="/" className={styles.link}>
-                Inicio
-              </a>
-            </li>
-            <li>
-              <a href="/productos" className={styles.link}>
-                Productos
-              </a>
-            </li>
-            <li>
-              <a href="/sobreNosotros" className={styles.link}>
-                Nosotros
-              </a>
-            </li>
+            <li><Link href="/" className={styles.link}>Inicio</Link></li>
+            <li><Link href="/productos" className={styles.link}>Catálogo</Link></li>
+            <li><Link href="/sobreNosotros" className={styles.link}>Nuestra Historia</Link></li>
+            <li><Link href="/carrito/cart" className={styles.link}>Mi Carrito</Link></li>
           </ul>
         </div>
 
-        {/* Sección de Información de Contacto */}
-        <div className={styles.contactSection}>
-          <h2 className={styles.sectionTitle}>Información de Contacto</h2>
-          <p className={styles.contactItem}>+1 (555) 123-4567</p>
-          <p className={styles.contactItem}>panozzoindumentaria@contacto.com</p>
-          <p className={styles.contactItem}>Avenida Viamonte 1384</p>
-          <p className={styles.contactItem}>Cdad. Autónoma de Buenos Aires, Argentina</p>
+        {/* Columna 3: Contacto */}
+        <div className={styles.contactColumn}>
+          <h3 className={styles.columnTitle}>Contacto</h3>
+          <div className={styles.contactItem}>
+            <span className={styles.icon}>📍</span>
+            <p>Av. Viamonte 1384, CABA</p>
+          </div>
+          <div className={styles.contactItem}>
+            <span className={styles.icon}>📞</span>
+            <p>+54 11 1234-5678</p>
+          </div>
+          <div className={styles.contactItem}>
+            <span className={styles.icon}>✉️</span>
+            <p>hola@panozzo.com</p>
+          </div>
         </div>
       </div>
 
-      {/* Sección de Derechos de Autor */}
-      <div className={styles.copyrightSection}>
-        <p>
-          © {new Date().getFullYear()} <b>Panozzo.com</b> Todos los derechos reservados.
-        </p>
+      <div className={styles.copyright}>
+        <p>© {new Date().getFullYear()} <strong>Panozzo Indumentaria</strong>. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

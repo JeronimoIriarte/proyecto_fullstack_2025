@@ -1,103 +1,100 @@
-.contenedorDeProductos {
-    display: grid;
-    grid-template-columns: 1fr 8fr;
-    gap: 2rem;
-    align-items: start;
+.gridContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem 2rem;
 }
 
+/* Barra de Filtros Horizontal */
+.filterBar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #f1f5f9;
+}
+
+.filterLabel {
+    font-weight: 700;
+    color: var(--color-primary);
+    white-space: nowrap;
+}
+
+.filterScroll {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 5px; /* Para que se vea el scroll si es necesario */
+}
+
+/* Estilo Chip Moderno */
+.filterChip {
+    background: #f1f5f9;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filterChip:hover {
+    background: #e2e8f0;
+    color: var(--color-primary);
+}
+
+.filterChip:focus {
+    background: var(--color-secondary);
+    color: white;
+    outline: none;
+}
+
+.resultsInfo {
+    margin-bottom: 1.5rem;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+/* Grid de Tarjetas */
 .productGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
-    margin-right: 3rem;
-    margin-left: 3rem;
 }
 
+/* Loading */
 .loadingContainer {
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 20%;
-    left: 0;
-    z-index: 1000;
-}
-
-.loadingGif {
-    width: 400px;
-    height: 400px;
-}
-
-.filtro {
-    text-align: center;
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 6rem;
-    height: fit-content;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-left: 2rem;
-    margin-bottom: 2rem;
+    justify-content: center;
+    padding: 3rem;
+    grid-column: 1 / -1;
 }
 
-
-.filtroBotones button {
-    width: 180px;
-    margin: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bolder;
-    transition: background-color 0.3s ease;
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(246, 147, 53, 0.2);
+    border-left-color: var(--color-secondary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-.filtroBotones button:hover {
-    background-color: #0056b3;
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
+/* Responsive */
 @media (max-width: 768px) {
-    .contenedorDeProductos {
-        grid-template-columns: 1fr;
-        padding: 0 1rem;
+    .filterBar {
+        flex-direction: column;
+        align-items: flex-start;
     }
-
-    .filtro {
-        position: static;
-        margin: 1rem 0;
+    
+    .filterScroll {
         width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 1rem 0.5rem;
-    }
-
-    .filtroBotones {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .filtroBotones button {
-        width: 140px;
-        font-size: 14px;
-        margin: 0.25rem;
-        padding: 0.5rem 0.75rem;
-    }
-
-    .productGrid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        margin-right: 0.5rem;
-        margin-left: 0.5rem;
     }
 }

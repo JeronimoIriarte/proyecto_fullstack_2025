@@ -1,63 +1,61 @@
-import React from 'react'
+import React from 'react';
 import styles from '@/styles/style_PanelDeControl/Productos_panelDeControl.module.css';
 import Card_panelDeControl from '@/components/PanelDeControl_page/Card_panelDeControl';
 
+const Productos_panelDeControl = ({ handleFilterChange, deleteProduct, setDataToEdit, filteredProducts, isLoading }) => {
+    
+    // Lista de categorías para generar botones dinámicamente (más limpio)
+    const categories = [
+        { label: "Todo", value: "All" },
+        { label: "🔥 Ofertas", value: "Ofertas" },
+        { label: "Selección Arg", value: "seleccion_arg" },
+        { label: "Boca", value: "boca" },
+        { label: "River", value: "river" },
+        { label: "Racing", value: "racing" },
+        { label: "Independiente", value: "independiente" },
+        { label: "San Lorenzo", value: "san_lorenzo" },
+        { label: "Importadas", value: "importadas" },
+    ];
 
-
-const productos_panelDeControl = ({handleFilterChange, deleteProduct, setDataToEdit, filteredProducts, isLoading }) => {
     return (
-        <div className={styles.contenedorDeProductos}>
-            <div className={styles.filtro}>
-                <h3>Filtro de camisetas</h3>
-                <div className={styles.filtroBotones}>
-                    <button onClick={() => handleFilterChange("All")}>
-                        Todos
-                    </button>
-                    <button onClick={() => handleFilterChange("Ofertas")}>
-                        Ofertas
-                    </button>
-                    <button onClick={() => handleFilterChange("seleccion_arg")}>
-                        Selección Argentina
-                    </button>
-                    <button onClick={() => handleFilterChange("boca")}>
-                        Boca Juniors
-                    </button>
-                    <button onClick={() => handleFilterChange("river")}>
-                        River Plate
-                    </button>
-                    <button onClick={() => handleFilterChange("racing")}>
-                        Racing Club
-                    </button>
-                    <button onClick={() => handleFilterChange("independiente")}>
-                        Independiente
-                    </button>
-                    <button onClick={() => handleFilterChange("san_lorenzo")}>
-                        San Lorenzo
-                    </button>
-                    <button onClick={() => handleFilterChange("importadas")}>
-                        Importadas
-                    </button>
+        <div className={styles.gridContainer}>
+            <div className={styles.filterBar}>
+                <span className={styles.filterLabel}>Filtrar por:</span>
+                <div className={styles.filterScroll}>
+                    {categories.map((cat) => (
+                        <button 
+                            key={cat.value} 
+                            className={styles.filterChip} 
+                            onClick={() => handleFilterChange(cat.value)}
+                        >
+                            {cat.label}
+                        </button>
+                    ))}
                 </div>
             </div>
+
+            <div className={styles.resultsInfo}>
+                Mostrando {filteredProducts.length} productos
+            </div>
+
             <div className={styles.productGrid}>
                 {isLoading ? (
                     <div className={styles.loadingContainer}>
-                        <img
-                            src="/gifs/loading.gif"
-                            alt="Cargando..."
-                            className={styles.loadingGif}
-                        />
+                        <div className={styles.spinner}></div>
                     </div>
                 ) : (
-
                     filteredProducts.map((product) => (
-                        <Card_panelDeControl key={product.id} product={product} deleteProduct={deleteProduct} setDataToEdit={setDataToEdit} />
+                        <Card_panelDeControl 
+                            key={product.id} 
+                            product={product} 
+                            deleteProduct={deleteProduct} 
+                            setDataToEdit={setDataToEdit} 
+                        />
                     ))
-
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default productos_panelDeControl
+export default Productos_panelDeControl;

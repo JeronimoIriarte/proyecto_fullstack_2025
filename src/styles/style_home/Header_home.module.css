@@ -1,65 +1,157 @@
 .hero {
-  background-image: url("/images/estadio.webp");
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: 
+    linear-gradient(to bottom, rgba(15, 18, 41, 0.6), rgba(15, 18, 41, 0.5)),
+    url("/images/hero_home.jpg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  color: var(--color-text);
-  text-align: center;
-}
-
-.filtro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.logoContainer {
-  margin-bottom: 1rem;
-}
-
-.logo {
-  max-width: 350px;
-  height: auto;
-}
-
-.hero-content {
-  display: flex;
-  color: var(--color-text-alt);
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-.button {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  padding: 0.8rem 1.5rem;
-  background-color: #28a745;
-  cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
+  background-attachment: fixed; /* Efecto Parallax */
   color: white;
-  border: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+  overflow: hidden;
 }
 
-.button:hover {
-  background-color: #218838;
-  transform: scale(1.1);
-  transition: 0.3s;
+.heroContainer {
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Logo */
+.logo {
+  max-width: 280px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+  transition: transform 0.5s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* Textos */
+.heroContent h1 {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #ffffff, #cbd5e1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+
+.heroContent p {
+  font-size: 1.4rem;
+  color: #e2e8f0;
+  margin-bottom: 3rem;
+  font-weight: 300;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Contenedor de Botones */
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Botón Principal (Ver Catálogo) */
+.btnPrimary {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  background-color: var(--color-secondary);
+  border: none;
+  border-radius: 50px; /* Bordes redondos modernos */
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 25px -5px rgba(246, 147, 53, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 30px -10px rgba(246, 147, 53, 0.6);
+  background-color: #ff9f2a;
+}
+
+/* Wrapper para el Login (para alinearlo bien) */
+.loginWrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* --- ANIMACIONES --- */
+.fadeInUp {
+  animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fadeInDown {
+  animation: fadeInDown 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.delay1 { animation-delay: 0.2s; }
+.delay2 { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroContent h1 {
+    font-size: 2.8rem;
+  }
+  
+  .heroContent p {
+    font-size: 1.1rem;
+  }
+
+  .logo {
+    max-width: 200px;
+  }
+  
+  .buttonsContainer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .btnPrimary {
+    width: 100%;
+    text-align: center;
+  }
 }

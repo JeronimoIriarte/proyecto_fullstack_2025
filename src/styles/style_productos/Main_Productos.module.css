@@ -1,0 +1,217 @@
+/* --- Hero de la Sección (Más compacto que el del Home) --- */
+.hero {
+  position: relative;
+  height: 40vh; /* Un poco más bajo que el del inicio */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  /* Mismo gradiente que el Home para consistencia */
+  background-image: 
+    linear-gradient(to bottom, rgba(15, 18, 41, 0.7), rgba(15, 18, 41, 0.5)),
+    url('/images/hero_productos.jpg');
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+  margin-bottom: 4rem;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  z-index: 2;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  z-index: 2;
+  margin-top: 1rem;
+  color: #cbd5e1;
+  max-width: 600px;
+}
+
+/* --- Layout Principal --- */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem 2rem;
+}
+
+.pageTitle {
+  text-align: left; /* Título alineado a la izquierda es más moderno */
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 2rem;
+  border-left: 5px solid var(--color-secondary); /* Pequeño detalle de diseño */
+  padding-left: 15px;
+}
+
+/* Grid Layout: Filtros a la izquierda, Productos a la derecha */
+.contenedorDeProductos {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Columna fija para filtros */
+  gap: 3rem;
+  align-items: start;
+}
+
+/* --- Barra Lateral de Filtros --- */
+.filtro {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 100px; /* Se queda pegado al bajar, pero respetando el Navbar */
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.filtro h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.filtroBotones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filtroBotones button {
+  width: 100%;
+  padding: 10px 15px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filtroBotones button:hover {
+  background-color: #f8fafc;
+  color: var(--color-secondary);
+  padding-left: 20px; /* Pequeña animación de desplazamiento */
+}
+
+/* Botón Activo */
+.filtroBotones button.active {
+  background-color: var(--color-secondary);
+  color: white;
+  font-weight: 600;
+  padding-left: 20px;
+  box-shadow: 0 4px 10px rgba(246, 147, 53, 0.3);
+}
+
+/* --- Grilla de Productos --- */
+.productGrid {
+  display: grid;
+  /* Grid responsivo automático: mínimo 260px por tarjeta */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+/* --- Loading (CSS Puro) --- */
+.loadingContainer {
+  grid-column: 2; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px; 
+  width: 100%;
+}
+
+/* El Spinner en sí */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(246, 147, 53, 0.2); /* Color del "riel" (naranja muy clarito) */
+  border-left-color: var(--color-secondary); /* Color de la parte que gira (naranja intenso) */
+  border-radius: 50%; /* Lo hace redondo */
+  animation: spin 1s linear infinite; /* La animación de giro */
+}
+
+/* La definición de la animación */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ajuste para móvil */
+@media (max-width: 1024px) {
+  .loadingContainer {
+    grid-column: 1; /* En móvil ocupa todo el ancho */
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .contenedorDeProductos {
+    grid-template-columns: 1fr; /* Una sola columna en tablets */
+  }
+
+  .filtro {
+    position: static; /* Ya no es sticky */
+    margin-bottom: 2rem;
+    overflow-x: auto; /* Scroll horizontal si hace falta */
+  }
+
+  .filtroBotones {
+    flex-direction: row; /* Filtros horizontales en móvil */
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filtroBotones button {
+    width: auto; /* Ancho automático */
+    background-color: #f1f5f9;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .filtroBotones button:hover,
+  .filtroBotones button.active {
+     padding-left: 16px; /* Quitamos la animación de desplazamiento en móvil */
+  }
+  
+  .filtro h3 {
+      text-align: center;
+      border: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 30vh;
+  }
+  
+  .heroTitle {
+    font-size: 2.2rem;
+  }
+  
+  .main {
+    padding: 0 1rem 4rem 1rem;
+  }
+}
