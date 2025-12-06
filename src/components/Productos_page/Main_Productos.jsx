@@ -1,36 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import styles from '@/styles/style_productos/GrillaDeProductos_productos.module.css';
+import styles from '@/styles/style_productos/Main_Productos.module.css';
 import Card_productos from '@/components/Productos_page/Card_productos.jsx';
 
 const Main_Productos = () => {
 
-    // Estados para los datos del servidor
-    const [products, setProducts] = useState([]); // Guardamos TODOS los productos aquí
-    const [filteredProducts, setFilteredProducts] = useState([]); // Guardamos los que se ven en pantalla
+    const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
     const [filter, setFilter] = useState("All");
     const [isLoading, setIsLoading] = useState(true);
     
     const router = useRouter();
 
-    // 1. CARGAR PRODUCTOS DEL BACKEND
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                // Petición al backend real
-                const response = await axios.get("http://localhost:5000/products");
+                const ENDPOINT = "http://localhost:5000/products";
+                const response = await axios.get(ENDPOINT);
                 const data = response.data;
                 
-                setProducts(data); // Guardamos la "copia maestra" de los datos
+                setProducts(data);
 
-                // Si viene con un filtro en la URL (ej: desde el Home), lo aplicamos
                 if (router.isReady && router.query.filtro) {
                     const category = router.query.filtro;
                     setFilter(category);
-                    applyFilter(category, data); // Filtramos usando los datos recién llegados
+                    applyFilter(category, data);
                 } else {
-                    setFilteredProducts(data); // Si no hay filtro, mostramos todo
+                    setFilteredProducts(data);
                     setIsLoading(false);
                 }
             } catch (error) {
@@ -40,10 +37,9 @@ const Main_Productos = () => {
         };
 
         fetchProducts();
-    }, [router.isReady, router.query.filtro]); // Se ejecuta al cargar o si cambia el filtro de URL
+    }, [router.isReady, router.query.filtro]);
 
 
-    // Función auxiliar para filtrar los datos (sin delay)
     const applyFilter = (category, dataOrigin) => {
         let result = [];
         if (category === "All") {
@@ -57,99 +53,66 @@ const Main_Productos = () => {
         setIsLoading(false);
     };
 
-    // 2. MANEJAR CLIC EN BOTONES DE FILTRO (Con delay visual)
     const handleFilterChange = (category) => {
         setIsLoading(true);
         setFilter(category);
-        
-        // Mantenemos tu efecto de carga de 0.5s
         setTimeout(() => {
             applyFilter(category, products);
-        }, 500);
+        }, 300); // Reduje un poco el tiempo de carga artificial para que se sienta más rápido
     };
+
+    // Helper para renderizar botones más limpio
+    const renderFilterButton = (label, value) => (
+        <button 
+            key={value}
+            onClick={() => handleFilterChange(value)}
+            className={filter === value ? styles.active : ''}
+        >
+            {label}
+            {filter === value && <span>•</span>} {/* Puntito decorativo al activo */}
+        </button>
+    );
 
     return (
         <>
             <section className={styles.hero}>
-                <div className={styles.heroOverlay}></div>
-                <h1 className={styles.heroTitle}>Colección Exclusiva</h1>
-                <p className={styles.heroSubtitle}>Descubre Nuestras Camisetas más exclusivas de la Argentina</p>
+                <h1 className={styles.heroTitle}>Catálogo Oficial</h1>
+                <p className={styles.heroSubtitle}>Viste los colores de tu pasión con la mejor calidad del mercado.</p>
             </section>
+            
             <main className={styles.main}>
-                <h2 className={styles.pageTitle}>Catálogo de Productos</h2>
                 <div className={styles.contenedorDeProductos}>
-                    <div className={styles.filtro}>
-                        <h3>Filtros de camisetas</h3>
+                    
+                    {/* Barra Lateral */}
+                    <aside className={styles.filtro}>
+                        <h3>Categorías</h3>
                         <div className={styles.filtroBotones}>
-                            <button 
-                                onClick={() => handleFilterChange("All")}
-                                className={filter === 'All' ? styles.active : ''}
-                            >
-                                Todos
-                            </button>
-                            <button 
-                                onClick={() => handleFilterChange("Ofertas")}
-                                className={filter === 'Ofertas' ? styles.active : ''}
-                            >
-                                Ofertas
-                            </button>
-                            <button 
-                                onClick={() => handleFilterChange("seleccion_arg")}
-                                className={filter === 'seleccion_arg' ? styles.active : ''}
-                            >
-                                Selección Argentina
-                            </button>
-                            <button 
-                                onClick={() => handleFilterChange("boca")}
-                                className={filter === 'boca' ? styles.active : ''}
-                            >
-                                Boca Juniors
-                            </button>
-                            <button 
-                                onClick={() => handleFilterChange("river")}
-                                className={filter === 'river' ? styles.active : ''}
-                            >
-                                River Plate
-                            </button>
-                            <button 
-                                onClick={() => handleFilterChange("racing")}
-                                className={filter === 'racing' ? styles.active : ''}
-                            >
-                                Racing Club
-                            </button>
-                            <button 
-                                onClick={() => handleFilterChange("independiente")}
-                                className={filter === 'independiente' ? styles.active : ''}
-                            >
-                                Independiente
-                            </button>
-                            <button 
-                                onClick={() => handleFilterChange("san_lorenzo")}
-                                className={filter === 'san_lorenzo' ? styles.active : ''}
-                            >
-                                San Lorenzo
-                            </button>
-                            <button 
-                                onClick={() => handleFilterChange("importadas")}
-                                className={filter === 'importadas' ? styles.active : ''}
-                            >
-                                Importadas
-                            </button>
+                            {renderFilterButton("Ver Todo", "All")}
+                            {renderFilterButton("🔥 Ofertas", "Ofertas")}
+                            {renderFilterButton("Selección Argentina", "seleccion_arg")}
+                            {renderFilterButton("Boca Juniors", "boca")}
+                            {renderFilterButton("River Plate", "river")}
+                            {renderFilterButton("Racing Club", "racing")}
+                            {renderFilterButton("Independiente", "independiente")}
+                            {renderFilterButton("San Lorenzo", "san_lorenzo")}
+                            {renderFilterButton("Internacionales", "importadas")}
                         </div>
-                    </div>
+                    </aside>
+
+                    {/* Grilla */}
                     <div className={styles.productGrid}>
                         {isLoading ? (
                             <div className={styles.loadingContainer}>
-                                <img
-                                    src="/gifs/loading.gif"
-                                    alt="Cargando..."
-                                    className={styles.loadingGif}
-                                />
+                              <div className={styles.spinner}></div>
                             </div>
                         ) : (
-                            filteredProducts.map((producto) => (
-                                <Card_productos key={producto.id} product={producto} />
-                            ))
+                            filteredProducts.length > 0 ? (
+                                filteredProducts.map((producto) => (
+                                    <Card_productos key={producto.id} product={producto} />
+                                ))
+                            ) : (
+                                <p>No se encontraron productos en esta categoría.</p>
+                            )
                         )}
                     </div>
                 </div>
@@ -158,4 +121,4 @@ const Main_Productos = () => {
     )
 }
 
-export default Main_Productos
+export default Main_Productos;
