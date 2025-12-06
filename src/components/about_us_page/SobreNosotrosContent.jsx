@@ -53,7 +53,7 @@ const SobreNosotrosContent = () => {
             </p>
           </div>
           <div className={styles.imageContent}>
-            <img src="/images/mision.png" alt="Taller de diseño de Panozzo" />
+            <img src="/images/pasion.jpg" alt="Taller de diseño de Panozzo" />
           </div>
         </div>
       </section>

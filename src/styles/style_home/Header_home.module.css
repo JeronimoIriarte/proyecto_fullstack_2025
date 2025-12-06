@@ -6,8 +6,8 @@
   align-items: center;
   justify-content: center;
   background-image: 
-    linear-gradient(to bottom, rgba(15, 18, 41, 0.6), rgba(15, 18, 41, 0.85)),
-    url("/images/estadio.webp");
+    linear-gradient(to bottom, rgba(15, 18, 41, 0.6), rgba(15, 18, 41, 0.5)),
+    url("/images/hero_home.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* Efecto Parallax */

@@ -11,10 +11,10 @@
   text-align: center;
   /* Mismo gradiente que el Home para consistencia */
   background-image: 
-    linear-gradient(to bottom, rgba(15, 18, 41, 0.7), rgba(15, 18, 41, 0.9)),
-    url('/images/hero_productos.png');
+    linear-gradient(to bottom, rgba(15, 18, 41, 0.7), rgba(15, 18, 41, 0.5)),
+    url('/images/hero_productos.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: bottom;
   background-attachment: fixed;
   margin-bottom: 4rem;
 }

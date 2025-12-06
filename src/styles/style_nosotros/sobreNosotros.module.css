@@ -9,10 +9,10 @@
   justify-content: center;
   color: white;
   text-align: center;
-  background-image: linear-gradient(to bottom, rgba(15, 18, 41, 0.7), rgba(15, 18, 41, 0.9)),
+  background-image: linear-gradient(to bottom, rgba(15, 18, 41, 0.7), rgba(15, 18, 41, 0.5)),
     url('/images/hero_nosotros.jpg');
   background-size: cover;
-  background-position: bottom;
+  background-position: center;
   background-attachment: fixed;
 }
 
