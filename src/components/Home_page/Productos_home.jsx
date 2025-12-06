@@ -48,19 +48,19 @@ export default function SeccionProductos() {
         {ofertas.length > 0 ? (
           <Swiper
             modules={[Navigation, Pagination]}
-            spaceBetween={20}
+            spaceBetween={25}
             slidesPerView={1}
             navigation
             pagination={{ clickable: true }}
             breakpoints={{
-              600: {
-                slidesPerView: 1,
-              },
-              790: {
+              640: {
                 slidesPerView: 2,
               },
-              1024: {
+              900: {
                 slidesPerView: 3,
+              },
+              1280: {
+                slidesPerView: 4,
               },
             }}
           >
