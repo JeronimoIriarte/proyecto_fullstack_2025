@@ -1,0 +1,151 @@
+.sectionAbout {
+    padding: 6rem 2rem;
+    background-color: #f8fafc; /* Fondo ligeramente diferente al blanco puro para separar secciones */
+    position: relative;
+}
+
+.headerContainer {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.tituloTestimonios {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.divider {
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-secondary);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* --- Grid --- */
+.gridTestimonios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Tarjeta --- */
+.tarjetaTestimonio {
+    background-color: white;
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.tarjetaTestimonio:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(246, 147, 53, 0.3);
+}
+
+/* Comillas decorativas gigantes */
+.quoteIcon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 6rem;
+    color: #f1f5f9;
+    font-family: serif;
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* --- Estrellas --- */
+.starsContainer {
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.starFilled {
+    color: #fbbf24; /* Amarillo dorado */
+    font-size: 1.2rem;
+    margin-right: 2px;
+}
+
+.starEmpty {
+    color: #e2e8f0;
+    font-size: 1.2rem;
+    margin-right: 2px;
+}
+
+/* --- Texto --- */
+.textoTestimonio {
+    font-size: 1.05rem;
+    color: #4b5563; /* Gris intermedio para lectura cómoda */
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+}
+
+/* --- Autor --- */
+.autorContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1.5rem;
+}
+
+.avatarPlaceholder {
+    width: 45px;
+    height: 45px;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.infoAutor {
+    display: flex;
+    flex-direction: column;
+}
+
+.nombreTestimonio {
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.verificado {
+    font-size: 0.8rem;
+    color: var(--color-accent); /* Verde */
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tituloTestimonios {
+        font-size: 2rem;
+    }
+    
+    .gridTestimonios {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+}
