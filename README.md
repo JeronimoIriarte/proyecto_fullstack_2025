@@ -1,87 +1,115 @@
 
-# Panozzo Indumentaria 👕⚽
+# 👕 Panozzo Indumentaria | E-commerce Full Stack
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 
 <br>
 
 <p align="center">
-  <img src="/images/EXAMPLE.png" alt="Panozzo Indumentaria Screenshot" width="800"/>
+  <img src="/public/images/logo_horizontal.png" alt="Panozzo Indumentaria Logo" width="300"/>
 </p>
 
 <p align="center">
-  <strong>Panozzo Indumentaria</strong> es un proyecto de e-commerce moderno y dinámico, enfocado en la venta de camisetas de fútbol. Desarrollado con Next.js, ofrece una experiencia de usuario fluida, rápida y completamente interactiva, desde la selección de productos hasta la simulación de compra.
+  <strong>Una experiencia de compra premium para fanáticos del fútbol.</strong><br>
+  Aplicación Full Stack moderna, escalable y con diseño de alta fidelidad.
 </p>
 
 ---
 
-## ✨ Características Principales
+## ✨ Características Destacadas
 
-*   **🎨 Catálogo Dinámico:** Visualiza todos los productos en una grilla moderna y atractiva.
-*   **🔍 Filtrado por Categorías:** Filtra fácilmente las camisetas por equipo, ofertas o tipo, con un indicador visual del filtro activo.
-*   **🖱️ Interfaz Interactiva:** Efecto hover en las tarjetas de producto para una vista alternativa de la camiseta.
-*   **🛒 Carrito de Compras Persistente:** Añade productos al carrito, que se guarda en el Local Storage para no perderlo al recargar la página.
-*   **📄 Páginas Estáticas:** Incluye una sección "Sobre Nosotros" con un diseño cuidado y animaciones de entrada.
-*   **📱 Diseño Responsivo:** Totalmente adaptable a dispositivos móviles, tablets y computadoras de escritorio.
-*   **✅ Validación de Tallas:** Impide añadir un producto al carrito sin antes seleccionar una talla, proporcionando feedback visual al usuario.
-*   **🚀 Navegación Rápida:** Construido sobre Next.js para un rendimiento óptimo y transiciones de página casi instantáneas.
+### 🎨 Experiencia de Usuario (Frontend)
+* **Diseño Premium UI/UX:** Interfaz moderna con efectos de *glassmorphism*, transiciones suaves y tipografía cuidada.
+* **Catálogo Interactivo:** Sistema de filtrado en tiempo real por equipos y categorías.
+* **Detalle de Producto:** Modales con sliders de imágenes integrados y selección de talles.
+* **Carrito Inteligente:** Persistencia de datos en `LocalStorage` y cálculo automático de totales.
+* **Checkout Simulado:** Formulario de pago con validaciones visuales y feedback de estado.
 
----
-
-## 🛠️ Tecnologías Utilizadas
-
-*   **Framework:** [Next.js](https://nextjs.org/)
-*   **Librería Principal:** [React](https://reactjs.org/)
-*   **Gestión de Estado:** React Context API con `useReducer`.
-*   **Estilos:** CSS Modules para un estilizado encapsulado y sin colisiones.
-*   **Animaciones:** `react-intersection-observer` para animaciones elegantes al hacer scroll.
-*   **Routing:** Next.js File-based Routing.
+### ⚙️ Potencia & Gestión (Backend)
+* **API RESTful:** Arquitectura MVC (Modelo-Vista-Controlador) construida con Express.
+* **Base de Datos en la Nube:** Conexión robusta a **MongoDB Atlas**.
+* **Panel de Control (CMS):** Interfaz administrativa para gestionar el inventario.
+    * ✅ **Crear:** Nuevos productos con subida de imágenes a **Cloudinary**.
+    * ✅ **Leer:** Visualización de stock en tiempo real.
+    * ✅ **Actualizar:** Edición de detalles y precios.
+    * ✅ **Borrar:** Eliminación segura de productos.
 
 ---
 
-## 🚀 Cómo Empezar
+## 🛠️ Stack Tecnológico
 
-Sigue estos pasos para levantar el proyecto en tu entorno local.
+### Frontend
+-   **Framework:** [Next.js 15](https://nextjs.org/)
+-   **Core:** React 19 (Hooks, Context API, Reducers)
+-   **Estilos:** CSS Modules + Variables CSS Globales
+-   **Componentes:** Swiper.js (Carruseles), Axios (Peticiones HTTP)
 
-### Prerrequisitos
-
--   Node.js (v18 o superior)
--   npm o yarn
-
-### Instalación
-
-1.  **Clona el repositorio:**
-    ```bash
-    git clone https://URL-DE-TU-REPOSITORIO.git
-    ```
-2.  **Navega a la carpeta del proyecto:**
-    ```bash
-    cd proyecto_react_2025
-    ```
-3.  **Instala las dependencias:**
-    ```bash
-    npm install
-    ```
-4.  **Ejecuta el servidor de desarrollo:**
-    ```bash
-    npm run dev
-    ```
-
-¡Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver el proyecto en acción!
+### Backend
+-   **Servidor:** Node.js + Express
+-   **Base de Datos:** MongoDB + Mongoose ODM
+-   **Imágenes:** Cloudinary API
+-   **Utilidades:** Cors, Dotenv, Nodemon
 
 ---
+
+## 🚀 Instalación y Despliegue
+
+Sigue estos pasos para levantar el proyecto completo en tu entorno local.
+
+
+1. Clona el repositorio:
+ ```bash
+git clone [https://github.com/TU_USUARIO/proyecto_react_2025.git](https://github.com/TU_USUARIO/proyecto_react_2025.git)
+cd proyecto_react_2025
+```
+2. Configurar el Backend
+```bash
+cd backend
+npm install
+```
+Crea un archivo .env en la carpeta backend/ con tus credenciales:
+
+Fragmento de código
+```
+PORT=5000
+DATABASE_URI=mongodb+srv://<TU_USUARIO>:<TU_PASSWORD>@<TU_CLUSTER>.mongodb.net/numendb
+```
+Inicia el servidor:
+
+```bash
+npm run dev
+```
+El servidor correrá en http://localhost:5000
+
+3. Configurar el Frontend
+Abre una nueva terminal en la raíz del proyecto:
+
+```bash
+npm install
+npm run dev
+```
+La aplicación estará disponible en http://localhost:3000
 
 ## 📂 Estructura del Proyecto
-
+El proyecto sigue una arquitectura Monorepo organizada:
 ```
-/src
-├── /components/    # Componentes reutilizables (Navbar, Footer, Cards, etc.)
-├── /data/          # Archivos JSON con datos estáticos (productos)
-├── /pages/         # Rutas de la aplicación (index, productos, sobreNosotros)
-├── /shopping_cart_reducer/ # Lógica del carrito (reducer, actions, initial state)
-└── /styles/        # Archivos de estilos con CSS Modules
+/
+├── backend/                # Servidor API Express
+│   ├── src/
+│   │   ├── controllers/    # Lógica de las peticiones
+│   │   ├── models/         # Esquemas de Mongoose (Datos)
+│   │   ├── routes/         # Endpoints de la API
+│   │   └── services/       # Comunicación con la BD
+│   └── ...
+├── src/                    # Cliente Next.js
+│   ├── components/         # Átomos y Moléculas de UI
+│   ├── pages/              # Rutas y Vistas (Home, Cart, Admin)
+│   ├── styles/             # Módulos CSS y Theme Global
+│   └── ...
+└── public/                 # Assets estáticos
 ```
 
 ## 🛠️ Diseñado por:
@@ -89,3 +117,14 @@ Sigue estos pasos para levantar el proyecto en tu entorno local.
 2.  **Montenegro Franco**
 3.  **Medina Jonathan**
 4.  **Conti Franco**
+
+## 🎨 Diseño y Estilos
+Rediseño de estilos en la rama NEW-STYLES creado por:
+**Iriarte Jeronimo**
+
+## Backend
+Backend creado por:
+**Iriarte Jeronimo**
+
+<p align="center"> Hecho con ❤️ y mucho código en 2025 </p>
+
