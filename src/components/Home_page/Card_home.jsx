@@ -29,7 +29,7 @@ const Tarjeta = (props) => {
                 
                 <div className={`${styles.overlayAction} ${isHovered ? styles.showAction : ''}`}>
                     <Link href="/productos?filtro=Ofertas" className={styles.quickViewBtn}>
-                        Ver Detalle
+                        Ver Ofertas
                     </Link>
                 </div>
             </div>
